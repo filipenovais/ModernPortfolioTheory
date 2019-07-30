@@ -9,7 +9,7 @@ import pandas_datareader.data as web
 import datetime as dt
 
 import PortfolioClass
-import Crypto
+#import Crypto
 
 
 # Get Open price data for all Ticker Symbols in one DataFrame
@@ -62,7 +62,7 @@ def getdfdata (TickerSymbol):
         downloaddata = 0
 
     # debug (always downloaddata=??)
-    downloaddata = 0
+    downloaddata = 1
     if downloaddata:
         start = dt.datetime(2014, 1, 1)
 
