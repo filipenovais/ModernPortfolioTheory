@@ -2,6 +2,7 @@ import pandas as pd
 import talib as ta
 import numpy as np
 import os.path
+import os
 import time
 import datetime
 from sys import exit
@@ -53,6 +54,9 @@ def getpricedatadf(tickersymbolist, portfolio, inputdate_init, inputdate_fin, nu
 
 # Download TickerSymbol DataFrame
 def getdfdata (TickerSymbol):
+
+    if not os.path.exists('tickercsv/'):
+        os.makedirs('tickercsv/')
 
     if not os.path.exists('tickercsv/'+ TickerSymbol + '.csv'):
         print('Downloading '+ TickerSymbol +' Data. Check CSV directory')

@@ -7,7 +7,7 @@ from sys import exit
 import math
 import time
 from matplotlib import pyplot as plt
-import pickle
+import os
 
 np.random.seed(12)
 
@@ -67,6 +67,8 @@ def getstd(weights, covariance):
 
 # get index and save weightsdf to csv
 def getweightsdf(weightsdf, weightsdfindex):
+    if not os.path.exists('wcsv/'):
+        os.makedirs('wcsv/')
 
     weightsdf.index = weightsdfindex
     weightsdf100 = weightsdf.copy(deep='all')
