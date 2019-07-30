@@ -8,3 +8,4 @@ Personal Project
 - Description: 
 
 ![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/PNGPortfolio.png)
+![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/terminalexample1.png)
