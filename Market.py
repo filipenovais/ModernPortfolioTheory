@@ -199,7 +199,7 @@ def main(portfolio, weightsdf):
             else:
                 continue
 
-    # working on this
+    # working on the plot
     makeplot(portfoliovalue_day, portfolio.simulationdf, portfolio.initialcapital, portfoliovalue_month, weightsdf)
 
     print('\nLast Day:')
