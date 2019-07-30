@@ -15,19 +15,16 @@ from sys import exit
 # !!!!!! inputdate_init >= '2017-01-01' !!!!!!
 #inputdate_init, inputdate_fin, tickersymbolist = GetData.askinput()
 
-
 # !!!!!! inputdate_init >= '2017-01-01' !!!!!!
-inputdate_init = '2018-06-01'
-#inputdate_fin = '2018-09-01'
+inputdate_init = '2019-01-01'
+#inputdate_fin = '2019-06-03'
 inputdate_fin = 'now'
 
 #tickersymbolist = ['BTC', 'LTC', 'ETH']
-tickersymbolist = ['AAPL', 'MSFT', 'FB']
+tickersymbolist = ['AAPL', 'MSFT', 'FB', 'NFLX', 'AMZN', 'GOOG']
 
 # Initial Capital
 initialcapital = 10000
-pershare_transactioncost = 0.005
-transactioncost = 0.5
 
 # Create portfolio
 portfolio = PortfolioClass.Portfolio(tickersymbolist, inputdate_init, inputdate_fin, initialcapital)
@@ -42,7 +39,7 @@ print(inputdate_fin)
 print(tickersymbolist)
 print()
 
-# Check Open Market days in input Dates
+# Check Open Market days in input dates
 simdate_init = portfolio.pricedatadf[inputdate_init:].index[0]
 simdate_fin = portfolio.pricedatadf[inputdate_init:].index[-1]
 print('Simulation begin and finish:')

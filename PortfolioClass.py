@@ -7,29 +7,28 @@ class Portfolio:
     def __init__(self, tickersymbolist, inputdate_init, inputdate_fin, initialcapital):
 
         self.initialcapital = initialcapital
-        self.availablecapital = initialcapital
+        self.transactioncost = 0.5
+        self.pershare_transactioncost = 0.005
+        self.availablecapital = self.initialcapital
         self.inputdate_init = inputdate_init
         self.inputdate_fin = inputdate_fin
         self.tickersymbolist = tickersymbolist
         self.portfolio = []
 
         for c in range(len(tickersymbolist)):
-            self.company = self.Company(tickersymbolist[c])
-            self.portfolio.append(self.company)
+            company = self.Company(tickersymbolist[c])
+            self.portfolio.append(company)
 
         #Get Open price data for all Ticker Symbols in one DataFrame - from 3 years before inputdate_init to inputdate_fin
         self.pricedatadf, self.simulationdf = GetData.getpricedatadf(self.tickersymbolist, self.portfolio, self.inputdate_init, self.inputdate_fin, 3)
 
     def getportfoliovalue(self, dfindex):
-        transactioncost = 0.5
-        pershare_transactioncost = 0.005
-
         totalcapital = 0
         for company in self.portfolio:
             totalcapital += company.capital
             if company.stocks > 0:
                 sell = company.stocks * (self.simulationdf['Price' + company.ticker][dfindex])
-                totalcapital += sell - transactioncost
+                totalcapital += sell - self.transactioncost
 
         totalcapital += self.availablecapital
 

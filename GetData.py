@@ -59,13 +59,14 @@ def getdfdata (TickerSymbol):
         os.makedirs('tickercsv/')
 
     if not os.path.exists('tickercsv/'+ TickerSymbol + '.csv'):
-        print('Downloading '+ TickerSymbol +' Data. Check CSV directory')
+        #print('Downloading '+ TickerSymbol +' Data. Check CSV directory')
         downloaddata = 1
     else:
-        print('tickercsv/' + TickerSymbol + '.csv Data')
+        #print('tickercsv/' + TickerSymbol + '.csv Data')
         downloaddata = 0
 
     # debug (always downloaddata=??)
+    print('Downloading ' + TickerSymbol + ' Data. Check CSV directory')
     downloaddata = 1
     if downloaddata:
         start = dt.datetime(2014, 1, 1)

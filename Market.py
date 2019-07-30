@@ -110,6 +110,66 @@ def makeplotportfolio(valuestockarray, pricedatadftesting, InitialCapital):
 
     return 0
 
+def makeplot(valuestockarray, pricedatadftesting, InitialCapital, portfoliovalue_month, weightsdf):
+    returns_series = pd.Series(portfoliovalue_month)
+    list_returns = returns_series.pct_change().tolist()
+    list_returns[0] = 0
+    list_returns = [100 * x for x in list_returns]
+
+    valuestockarray = [i / InitialCapital * 100 - 100 for i in valuestockarray]
+
+    style.use('seaborn-whitegrid')
+    fig, ax = plt.subplots()
+
+    ax = plt.subplot2grid((3, 1), (0, 0), colspan=1, rowspan=2)
+    ax.xaxis.set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.plot(pricedatadftesting.index.tolist(), valuestockarray, 'b-', label = '% ROR', )
+    ax.fmt_xdata = mdates.DateFormatter('%Y-%m')
+    ax.set_title('Portfolio Return')
+    legend = ax.legend(frameon=True, loc='upper left', shadow=True, fontsize='medium')
+
+    ax.plot(pricedatadftesting.index.tolist()[-1], valuestockarray[-1], 'b*', label = '% ROR', )
+    label = "{:.2f} %".format(valuestockarray[-1])
+    plt.annotate(label, (pricedatadftesting.index.tolist()[-1], valuestockarray[-1]), textcoords="offset points", xytext=(0, 10), ha='center')
+
+    ax = plt.subplot2grid((3, 1), (2, 0), colspan=1, rowspan=1, sharex=ax)
+    barlist = ax.bar(weightsdf.index.tolist(), list_returns, label='Monthly Returns (%)', width=20)
+    for index_bar in range(len(barlist)):
+        if list_returns[index_bar] <= 0:
+            barlist[index_bar].set_color('r')
+        else:
+            barlist[index_bar].set_color('g')
+
+    #for x, y in zip(pricedatadftesting.index.tolist(), list_returns):
+    #    label = "{:.2f}".format(y)
+    #    if y <= 0:
+    #        plt.annotate(label, (x, y), textcoords="offset points", xytext=(0, 2), ha='center', fontsize=8)
+    #    else:
+    #        plt.annotate(label, (x, y), textcoords="offset points", xytext=(0, 2), ha='center', fontsize=8)
+
+    ax.xaxis.set_visible(True)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    legend = ax.legend(frameon=True, loc='best', shadow=True, fontsize='medium')
+
+    plt.xticks(rotation=45)
+    plt.xlabel('Date')
+
+    #plt.ylim((0,100))
+    plt.box(on=None)
+    plt.gcf().autofmt_xdate()
+    plt.savefig('PNGPortfolio.png')
+    plt.legend()
+    plt.show()
+
+    return 0
+
 def main(portfolio, weightsdf):
 
     ntransactions = 0
@@ -139,13 +199,11 @@ def main(portfolio, weightsdf):
             else:
                 continue
 
-                
-    makeplotportfolio(portfoliovalue_month, weightsdf, portfolio.initialcapital)
-    makeplotportfolio(portfoliovalue_day, portfolio.simulationdf, portfolio.initialcapital)
+    # working on this
+    makeplot(portfoliovalue_day, portfolio.simulationdf, portfolio.initialcapital, portfoliovalue_month, weightsdf)
 
+    print('\nLast Day:')
     print(dfindex)
     print(portfolio)
-    print(portfoliovalue_month)
-    print(portfoliovalue_day)
 
     return 0
