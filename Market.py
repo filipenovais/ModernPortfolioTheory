@@ -45,16 +45,14 @@ def allocatecapital(portfolio, weightsdf, dfindex):
 
     return portfolio
 
-def makeplot(valuestockarray, pricedatadftesting, InitialCapital, portfoliovalue_month, weightsdf):
-    returns_series = pd.Series(portfoliovalue_month)
-    list_returns = returns_series.pct_change().tolist()
-    list_returns[0] = 0
-    list_returns = [100 * x for x in list_returns]
-
-    valuestockarray = [i / InitialCapital * 100 - 100 for i in valuestockarray]
-
+def makeplot(portfolio, weightsdf, portfoliovalue_day, portfoliovalue_month):
     style.use('seaborn-whitegrid')
     fig, ax = plt.subplots()
+
+
+    # *********** Plot ROR ***********
+    pricedatadftesting = portfolio.simulationdf
+    valuestockarray = [i / portfolio.initialcapital * 100 - 100 for i in portfoliovalue_day]
 
     ax = plt.subplot2grid((3, 1), (0, 0), colspan=1, rowspan=2)
     ax.xaxis.set_visible(False)
@@ -64,12 +62,19 @@ def makeplot(valuestockarray, pricedatadftesting, InitialCapital, portfoliovalue
     ax.spines['left'].set_visible(False)
     ax.plot(pricedatadftesting.index.tolist(), valuestockarray, 'b-', label = '% ROR', )
     ax.fmt_xdata = mdates.DateFormatter('%Y-%m')
-    ax.set_title('Portfolio Return')
+    ax.set_title('Portfolio Return of:\n'+str(portfolio.tickersymbolist))
     legend = ax.legend(frameon=True, loc='upper left', shadow=True, fontsize='medium')
 
+    # Star point at the end
     ax.plot(pricedatadftesting.index.tolist()[-1], valuestockarray[-1], 'b*', label = '% ROR', )
     label = "{:.2f} %".format(valuestockarray[-1])
     plt.annotate(label, (pricedatadftesting.index.tolist()[-1], valuestockarray[-1]), textcoords="offset points", xytext=(0, 10), ha='center')
+
+    # *********** Bar plot ***********
+    returns_series = pd.Series(portfoliovalue_month)
+    list_returns = returns_series.pct_change().tolist()
+    list_returns[0] = 0
+    list_returns = [100 * x for x in list_returns]
 
     ax = plt.subplot2grid((3, 1), (2, 0), colspan=1, rowspan=1, sharex=ax)
     barlist = ax.bar(weightsdf.index.tolist(), list_returns, label='Monthly Returns (%)', width=20)
@@ -135,7 +140,7 @@ def main(portfolio, weightsdf):
                 continue
 
     # working on the plot
-    makeplot(portfoliovalue_day, portfolio.simulationdf, portfolio.initialcapital, portfoliovalue_month, weightsdf)
+    makeplot(portfolio, weightsdf, portfoliovalue_day, portfoliovalue_month)
 
     print('\nLast Day:')
     print(dfindex)

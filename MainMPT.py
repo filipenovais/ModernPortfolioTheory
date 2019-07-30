@@ -17,7 +17,7 @@ from sys import exit
 
 # !!!!!! inputdate_init >= '2017-01-01' !!!!!!
 inputdate_init = '2019-01-01'
-#inputdate_fin = '2019-06-03'
+#inputdate_fin = '2019-07-01'
 inputdate_fin = 'now'
 
 #tickersymbolist = ['BTC', 'LTC', 'ETH']
