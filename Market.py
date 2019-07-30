@@ -96,7 +96,8 @@ def makeplot(portfolio, weightsdf, portfoliovalue_day, portfoliovalue_month):
     ax.spines['right'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
     ax.spines['left'].set_visible(False)
-    legend = ax.legend(frameon=False, loc='best', shadow=True, fontsize='medium')
+    #legend = ax.legend(frameon=False, loc='best', shadow=True, fontsize='medium')
+    legend = ax.legend(frameon=False, loc='best', shadow=True, fontsize='small')
 
     plt.xticks(rotation=45)
     plt.xlabel('Date')
@@ -104,8 +105,8 @@ def makeplot(portfolio, weightsdf, portfoliovalue_day, portfoliovalue_month):
     #plt.ylim((0,100))
     plt.box(on=None)
     plt.gcf().autofmt_xdate()
-    plt.savefig('PNGPortfolio.png')
     #plt.legend()
+    plt.savefig('PNGPortfolio.png')
     plt.show()
 
     return 0
