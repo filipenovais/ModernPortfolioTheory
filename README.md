@@ -7,5 +7,5 @@ Personal Project
 - Year: 2019
 - Description: 
 
-![alt text](https://github.com/filipenovais/PixelGeneticAlgorithm/blob/master/pixelGAinit.png)
+![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/PNGPortfolio.png)
 
