@@ -21,7 +21,7 @@ inputdate_init = '2019-01-01'
 inputdate_fin = 'now'
 
 #tickersymbolist = ['BTC', 'LTC', 'ETH']
-tickersymbolist = ['AAPL', 'MSFT', 'FB', 'NFLX', 'AMZN', 'GOOG']
+tickersymbolist = ['AAPL', 'MSFT', 'FB', 'AMZN', 'V']
 
 # Initial Capital
 initialcapital = 10000
