@@ -11,8 +11,10 @@ The system simulates an investment where the user can choose:
 - The test period of the simulation
 - The cost of each transaction
 
-The system automaticaly downloads daily stock quotes of each company from yahoo and minimizes the standard deviation of the monthly portfolio returns. All the available capital is distributed every month, starting from the initial simulation date.
+The system automaticaly downloads daily stock quotes of each company from yahoo and minimizes the standard deviation of the monthly portfolio returns. All the available capital is distributed every month acording to the resulting WEIGHTS, starting from the initial simulation date.
 
 
 ![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/PNGPortfolio.png)
+Figure 1: Daily Rate of Return of the Portfolio
 ![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/terminalexample1.png)
+Figure 2:
