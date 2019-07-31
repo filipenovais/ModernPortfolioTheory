@@ -6,7 +6,7 @@ Personal Project
 - Name: Investing Simulation using MPT
 - Year: 2019
 
-The system simulates an investment where the user can choose:
+The system simulates an investment using a Modern Portfolio Theory Model where the user can choose:
 - The companies he/she wishes to invest
 - The test period of the simulation
 - The cost of each transaction
