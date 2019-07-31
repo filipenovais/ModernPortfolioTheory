@@ -15,6 +15,9 @@ The system automaticaly downloads daily stock quotes of each company from yahoo 
 
 
 ![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/PNGPortfolio.png)
+
 Figure 1: Daily Rate of Return of the Portfolio
+
 ![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/terminalexample1.png)
+
 Figure 2:
