@@ -47,7 +47,6 @@ def makeplot(portfolio, weightsdf, portfoliovalue_day, portfoliovalue_month):
     style.use('seaborn-whitegrid')
     fig, ax = plt.subplots()
 
-
     # *********** Plot ROR ***********
     pricedatadftesting = portfolio.simulationdf
     valuestockarray = [i / portfolio.initialcapital * 100 - 100 for i in portfoliovalue_day]
