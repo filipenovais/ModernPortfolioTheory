@@ -11,26 +11,23 @@ import matplotlib.dates as mdates
 
 
 def buystocks(portfolio, dfindex):
-    transactioncost = 0.5
-    pershare_transactioncost = 0.005
 
     for ticker in portfolio.tickersymbolist:
-        stockstobuy = portfolio[ticker].capital // (portfolio.simulationdf['Price' + ticker][dfindex] + pershare_transactioncost)
+        stockstobuy = portfolio[ticker].capital // (portfolio.simulationdf['Price' + ticker][dfindex])
         if stockstobuy > 0:
-            buy = stockstobuy * (portfolio.simulationdf['Price' + ticker][dfindex] + pershare_transactioncost)
-            portfolio[ticker].capital -= buy + transactioncost
+            buy = stockstobuy * (portfolio.simulationdf['Price' + ticker][dfindex])
+            portfolio[ticker].capital -= buy + portfolio.transactioncost
             portfolio[ticker].stocks = stockstobuy
 
     return portfolio
 
+
 def sellstocks(portfolio, dfindex):
-    transactioncost = 0.5
-    pershare_transactioncost = 0.005
 
     for ticker in portfolio.tickersymbolist:
         if portfolio[ticker].stocks > 0:
             sell = portfolio[ticker].stocks * (portfolio.simulationdf['Price' + ticker][dfindex])
-            portfolio[ticker].capital += sell - transactioncost
+            portfolio[ticker].capital += sell - portfolio.transactioncost
             portfolio[ticker].stocks = 0
 
     return portfolio
@@ -44,6 +41,7 @@ def allocatecapital(portfolio, weightsdf, dfindex):
         portfolio.availablecapital -= portfolio[ticker].capital
 
     return portfolio
+
 
 def makeplot(portfolio, weightsdf, portfoliovalue_day, portfoliovalue_month):
     style.use('seaborn-whitegrid')
@@ -111,8 +109,9 @@ def makeplot(portfolio, weightsdf, portfoliovalue_day, portfoliovalue_month):
 
     return 0
 
-def main(portfolio, weightsdf):
 
+def main(portfolio, weightsdf):
+    #number of transactions
     ntransactions = 0
 
     portfoliovalue_month = []

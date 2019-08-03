@@ -8,7 +8,7 @@ class Portfolio:
 
         self.initialcapital = initialcapital
         self.transactioncost = 0.5
-        self.pershare_transactioncost = 0.005
+        #self.pershare_transactioncost = 0.005
         self.availablecapital = self.initialcapital
         self.inputdate_init = inputdate_init
         self.inputdate_fin = inputdate_fin
