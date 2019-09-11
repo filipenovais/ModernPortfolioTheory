@@ -12,7 +12,7 @@ The system simulates an investment using a Modern Portfolio Theory Model where t
 - The Initial Capital available to invest
 - The cost of each transaction
 
-The system automaticaly downloads daily stock quotes of each company from yahoo and minimizes the standard deviation of the monthly portfolio returns. All the available capital is distributed every month acording to the resulting WEIGHTS, starting from the initial simulation date.
+The system automatically downloads daily stock quotes of each company from yahoo and minimizes the standard deviation of the monthly portfolio returns. All the available capital is distributed every month according to the resulting WEIGHTS, starting from the initial simulation date.
 
 ![alt text](https://github.com/filipenovais/ModernPortfolioTheory/blob/master/PNGPortfolio.png)
 
